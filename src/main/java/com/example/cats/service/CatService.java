@@ -19,4 +19,21 @@ public class CatService {
     public Cat findById(Long id) {
         return catRepository.findById(id).orElse(null);
     }
+
+    public List<Cat> findByName(String name) {
+        return catRepository.findByName(name);
+    }
+
+    public Cat save(Cat cat) {
+        return catRepository.save(cat);
+    }
+
+    public void delete(Long id) {
+        catRepository.delete(findById(id));
+    }
+
+    public void replace(Cat cat){
+        catRepository.save(cat);
+    }
+
 }

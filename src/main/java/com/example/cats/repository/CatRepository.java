@@ -3,6 +3,8 @@ package com.example.cats.repository;
 import com.example.cats.domain.Cat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CatRepository extends JpaRepository<Cat, Long> {
+import java.util.List;
 
+public interface CatRepository extends JpaRepository<Cat, Long> {
+    List<Cat> findByName(String name);
 }
