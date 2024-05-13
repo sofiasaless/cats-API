@@ -1,7 +1,8 @@
 package com.example.cats.service;
 
-import com.example.cats.dto.CatDTO;
+import com.example.cats.dto.CatPostDTO;
 import com.example.cats.dto.CatMapper;
+import com.example.cats.dto.CatPutDTO;
 import com.example.cats.exceptions.BadRequestException;
 import com.example.cats.model.Cat;
 import com.example.cats.repository.CatRepository;
@@ -32,16 +33,22 @@ public class CatService {
         return catRepository.findByName(name);
     }
 
-    public Cat save(CatDTO catDTO) {
-        return catRepository.save(CatMapper.INSTANCE.toCat(catDTO));
+    public Cat save(CatPostDTO catPostDTO) {
+        return catRepository.save(CatMapper.INSTANCE.toCat(catPostDTO));
     }
 
     public void delete(Long id) {
         catRepository.delete(findById(id));
     }
 
-    public void replace(Cat cat){
-        catRepository.save(cat);
+    public void replace(CatPutDTO cat){
+        // com esse replace, é preciso preencher todos os atributos cat, mesmo que não sofram atualização, pois o save requere o notEmpty e notNull
+        // pensar numa maneira que você possa atualizar somente o campo que deseja, sem precisar preencher todos os atributos do json
+        // talvez criar um metodo de update para cada atributo ??? ai espefica no controller o que vai ser atualizado
+        Cat catSaved = findByIdOrThrowBadRequestException(cat.getId());
+        Cat updatedCat = CatMapper.INSTANCE.toCat(cat);
+        updatedCat.setId(catSaved.getId());
+        catRepository.save(updatedCat);
     }
 
 }

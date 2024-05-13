@@ -1,6 +1,7 @@
 package com.example.cats.controller;
 
-import com.example.cats.dto.CatDTO;
+import com.example.cats.dto.CatPostDTO;
+import com.example.cats.dto.CatPutDTO;
 import com.example.cats.model.Cat;
 import com.example.cats.service.CatService;
 import jakarta.validation.Valid;
@@ -37,8 +38,8 @@ public class CatController {
     }
 
     @PostMapping()
-    public ResponseEntity<Cat> save(@RequestBody @Valid CatDTO catDTO) {
-        return new ResponseEntity<>(catService.save(catDTO), HttpStatus.CREATED);
+    public ResponseEntity<Cat> save(@RequestBody @Valid CatPostDTO catPostDTO) {
+        return new ResponseEntity<>(catService.save(catPostDTO), HttpStatus.CREATED);
     }
  
     @DeleteMapping(path = "/{id}")
@@ -48,7 +49,7 @@ public class CatController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody Cat cat){
+    public ResponseEntity<Void> replace(@RequestBody CatPutDTO cat){
         catService.replace(cat);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -10,6 +10,7 @@ public abstract class CatMapper {
     public static final CatMapper INSTANCE = Mappers.getMapper(CatMapper.class);
 
     // vai transformar o catDTO automaticamente em um objeto cat
-    public abstract Cat toCat(CatDTO data);
+    public abstract Cat toCat(CatPostDTO data);
+    public abstract Cat toCat(CatPutDTO data);
 
 }
