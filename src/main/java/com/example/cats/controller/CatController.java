@@ -2,6 +2,7 @@ package com.example.cats.controller;
 
 import com.example.cats.domain.Cat;
 import com.example.cats.service.CatService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class CatController {
     }
 
     @PostMapping()
-    public ResponseEntity<Cat> save(@RequestBody Cat cat) {
+    public ResponseEntity<Cat> save(@RequestBody @Valid Cat cat) {
         return new ResponseEntity<>(catService.save(cat), HttpStatus.CREATED);
     }
  

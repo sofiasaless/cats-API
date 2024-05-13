@@ -1,9 +1,8 @@
 package com.example.cats.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,12 +18,13 @@ public class Cat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tutorName;
+    @NotEmpty
+    @NotNull(message = "Nome não pode ser vazio ou nulo")
     private String name;
-    private String breed;
+    @NotNull(message = "Gênero não pode ser vazio ou nulo")
     private String gender;
+    @NotNull(message = "Idade não pode ser vazia ou nula")
     private int age;
-    private float weight;
 
 
 }
