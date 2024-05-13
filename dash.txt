@@ -1,9 +1,9 @@
 ...para fazer:
 - exceções customizadas para o cat quando for fazer post, delete, update, find, list, etc... é necessário surgir uma
 mensagem mais amigável para que possa ser entendido o que tá acontecendo
-- não permitir que o nome e os demais atributos do cat sejam vazios ou inválidos;
-- fazer o postRequestBody e o putRequestBody para o cat;
 - fazer o security da api, mesmo que simples;
 - fazer o restante dos métodos do service, controller, etc...
 
 ...feito:
+- não permitir que o nome e os demais atributos do cat sejam vazios ou inválidos;
+- fazer o postRequestBody e o putRequestBody para o cat;
