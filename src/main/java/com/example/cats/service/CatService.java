@@ -2,6 +2,7 @@ package com.example.cats.service;
 
 import com.example.cats.dto.CatDTO;
 import com.example.cats.dto.CatMapper;
+import com.example.cats.exceptions.BadRequestException;
 import com.example.cats.model.Cat;
 import com.example.cats.repository.CatRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,11 @@ public class CatService {
 
     public Cat findById(Long id) {
         return catRepository.findById(id).orElse(null);
+    }
+
+    public Cat findByIdOrThrowBadRequestException(Long id) {
+        return catRepository.findById(id).orElseThrow(
+                () -> new BadRequestException("Cat not found"));
     }
 
     public List<Cat> findByName(String name) {

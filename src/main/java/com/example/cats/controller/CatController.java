@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-
 @RestController
 @RequestMapping("cats")
 @RequiredArgsConstructor
@@ -30,7 +28,7 @@ public class CatController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cat> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(catService.findById(id));
+        return ResponseEntity.ok(catService.findByIdOrThrowBadRequestException(id));
     }
 
     @GetMapping(path = "/find")
