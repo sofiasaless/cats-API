@@ -1,6 +1,8 @@
 package com.example.cats.service;
 
-import com.example.cats.domain.Cat;
+import com.example.cats.dto.CatDTO;
+import com.example.cats.dto.CatMapper;
+import com.example.cats.model.Cat;
 import com.example.cats.repository.CatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,8 @@ public class CatService {
         return catRepository.findByName(name);
     }
 
-    public Cat save(Cat cat) {
-        return catRepository.save(cat);
+    public Cat save(CatDTO catDTO) {
+        return catRepository.save(CatMapper.INSTANCE.toCat(catDTO));
     }
 
     public void delete(Long id) {

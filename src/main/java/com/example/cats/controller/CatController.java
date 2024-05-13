@@ -1,6 +1,7 @@
 package com.example.cats.controller;
 
-import com.example.cats.domain.Cat;
+import com.example.cats.dto.CatDTO;
+import com.example.cats.model.Cat;
 import com.example.cats.service.CatService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +39,8 @@ public class CatController {
     }
 
     @PostMapping()
-    public ResponseEntity<Cat> save(@RequestBody @Valid Cat cat) {
-        return new ResponseEntity<>(catService.save(cat), HttpStatus.CREATED);
+    public ResponseEntity<Cat> save(@RequestBody @Valid CatDTO catDTO) {
+        return new ResponseEntity<>(catService.save(catDTO), HttpStatus.CREATED);
     }
  
     @DeleteMapping(path = "/{id}")

@@ -1,4 +1,4 @@
-package com.example.cats.domain;
+package com.example.cats.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,12 +18,8 @@ public class Cat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    @NotNull(message = "Nome não pode ser vazio ou nulo")
     private String name;
-    @NotNull(message = "Gênero não pode ser vazio ou nulo")
     private String gender;
-    @NotNull(message = "Idade não pode ser vazia ou nula")
     private int age;
 
 
