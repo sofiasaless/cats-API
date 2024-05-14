@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CatDTO {
+public class CatPostDTO {
 
     @NotEmpty(message = "Nome não pode ser vazio")
     @NotNull(message = "Nome não pode ser nulo")
