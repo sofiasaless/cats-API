@@ -2,13 +2,18 @@ package com.example.cats.handler;
 
 import com.example.cats.exceptions.BadRequestException;
 import com.example.cats.exceptions.BadRequestExceptionDetails;
+import com.example.cats.exceptions.ExceptionDetails;
 import com.example.cats.exceptions.ValidationExceptionDetails;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.util.WebUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +25,7 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
     // falando para os controllers que caso vc tenha uma exceção do tipo badrequest, utiliza-se esse exceptionhandler
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<BadRequestExceptionDetails> handlerBadRequestException(BadRequestException bre) {
+    public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(BadRequestException bre) {
         return new ResponseEntity<>(
                 BadRequestExceptionDetails.builder()
                         .timestamp(LocalDateTime.now())
@@ -35,7 +40,7 @@ public class RestExceptionHandler {
     // descobrindo qual a exeção que tá sendo lançada
     // com esse handler, a requisição do post vai ficar com todas as exceções customizadas
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ValidationExceptionDetails> handlerMethodArgumentNotValidException(MethodArgumentNotValidException exception){
+    protected ResponseEntity<ValidationExceptionDetails> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(","));
         String fieldsMassage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
@@ -53,4 +58,21 @@ public class RestExceptionHandler {
         );
     }
 
+
+
+    // para exceções adversas que podem ocorrer na api é preciso sobrecarregar este handler
+    protected ResponseEntity<Object> handleExceptionInternal
+    (Exception ex, Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request){
+        if (HttpStatus.INTERNAL_SERVER_ERROR.equals(statusCode)) {
+            request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, WebRequest.SCOPE_REQUEST);
+        }
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .status(statusCode.value())
+                .title(ex.getCause().getMessage())
+                .details("Check the field(s) error")
+                .developerMessage(ex.getClass().getName())
+        .build();
+        return new ResponseEntity<>(exceptionDetails, headers, statusCode);
+    }
 }
