@@ -22,34 +22,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class CatController {
     private final CatService catService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<List<Cat>> listAll() {
         return ResponseEntity.ok(catService.listAll());
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cat> findById(@PathVariable Long id) {
         return ResponseEntity.ok(catService.findByIdOrThrowBadRequestException(id));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = "/find")
     public ResponseEntity<List<Cat>> findByName(@RequestParam String name) {
         return ResponseEntity.ok(catService.findByName(name));
     }
 
-    @PostMapping()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping(path = "/save")
     public ResponseEntity<Cat> save(@RequestBody @Valid CatPostDTO catPostDTO) {
         return new ResponseEntity<>(catService.save(catPostDTO), HttpStatus.CREATED);
     }
- 
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         catService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody CatPutDTO cat){
+    public ResponseEntity<Void> replace(@RequestBody @Valid CatPutDTO cat){
         catService.replace(cat);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
