@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Gatuxos</title>
+</head>
+<body>
+    
+    <div id="container">
+        <form id="cat-save">
+            <h1>Preencha os campos</h1>
+            <label for="name">Nome do gatinho:</label>
+            <input type="text" maxlength="20" id="name" name="name" required>
+
+            <label for="age">Idade do gatinho:</label>
+            <input type="number" min="0" max="20" id="age" name="age" required>
+
+            <label for="gender">Gênero:</label>
+            <select name="gender" id="gender" required>
+                <option value="Macho">Macho</option>
+                <option value="Femea">Fêmea</option>
+            </select>
+
+            <button type="submit">Cadastrar gatuxo</button>
+
+        </form>
+    </div>
+
+
+</body>
+</html>
