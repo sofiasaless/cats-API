@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Gatuxos</title>
 </head>
 <body>
-    
-    <div id="container">
-        <form id="cat-save-form">
-            <h1>Cadastrando</h1>
-            <span id="alerta"></span>
-            <label for="name">Nome do gatinho:</label>
-            <input type="text" maxlength="20" id="name" name="name">
+    <nav>
+        <div class="header-logo">
+            <img src="svg/img/logo-header.png" alt="Header Logo">
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="register/register.html">Cadastro</a></li>
+                <li><a href="#">Visualizar</a></li>
+                <li><a id="about" href="#">Sobre</a></li>
+            </ul>
+        </div>
+    </nav>
 
-            <label for="age">Idade do gatinho:</label>
-            <input type="number" min="0" max="20" id="age" name="age">
 
-            <label for="gender">Gênero:</label>
-            <select name="gender" id="gender">
-                <option value="Macho">Macho</option>
-                <option value="Femea">Fêmea</option>
-            </select>
+    <header class="principal">
+        <div class="texts">
+            <h1>Gatuxos<br>API</h1>
+            <p>Site para fins de teste para API Spring. Cadastre um gatinho e o visuailize para testar!</p>
+        </div>
+        <div class="cat-image">
+            <div class="image">
+                <img width="430px" src="svg/img/logo-home.png" alt="">
+            </div>
+        </div>
+    </header>
 
-            <button id="register" type="submit">Cadastrar gatuxo</button>
-        </form>
-    </div>
-
-    <script src="assets/script.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --first-color: #062a75;
+    --second-color: #f1f1f1;
+    --title: "Righteous", sans-serif;
+    --others: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 500;
+    background-color: var(--second-color);
+
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+}
+
+.header-logo {
+    display: flex;
+    flex: 15%;
+    margin-left: 15%;
+    align-items: center;
+    justify-content: left;
+}
+
+.header-logo img {
+    margin: 10px;
+    width: 55px;    
+}
+
+.navbar {
+    display: flex;
+    flex: 55%;
+    margin-right: 15%;
+    justify-content: right;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+}
+
+ul li {
+    display: inline-block;
+    text-decoration: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: var(--first-color);
+    font-size: 18px;
+    margin: 20px;
+}
+
+#about {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 50px;
+}
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+}
+
+.texts {
+    flex: 30%;
+    margin-left: 15%;
+}
+
+h1 {
+    font-family: var(--title);
+    font-size: 120px;
+    text-transform: uppercase;
+    color: var(--first-color);
+    line-height: 1;
+    letter-spacing: -5px;
+}
+
+p {
+    color:var(--first-color);
+    font-size: 16px;
+}
+
+.cat-image {
+    display: flex;
+    flex: 40%;
+    height: 600px;
+    margin-right: 5%;
+    justify-content: center;
+}
+
+.image {
+    align-content: center;
+}
