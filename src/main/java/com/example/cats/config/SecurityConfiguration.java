@@ -20,6 +20,7 @@ public class SecurityConfiguration {
     @Autowired
     private UserDetailsService userDetailsService;
 
+//    filtro de segurança (sem erros de exceção)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -57,6 +58,7 @@ public class SecurityConfiguration {
         return userDetailsService;
     }
 
+// autenticação com os usuarios salvos no banco de dados, admin ou user
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

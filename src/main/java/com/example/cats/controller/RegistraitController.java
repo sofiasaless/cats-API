@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController // controller para registro de novos usuários do spring security
 @RequestMapping("auth")
 public class RegistraitController {
 
@@ -22,8 +22,6 @@ public class RegistraitController {
     @PostMapping("/register/user")
     public MyUser register(@RequestBody MyUser myUser) {
         myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
-
-
         return myUserRepository.save(myUser);
     }
 
