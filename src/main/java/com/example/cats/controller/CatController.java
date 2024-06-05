@@ -7,6 +7,8 @@ import com.example.cats.service.CatService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,42 +20,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("cats")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequiredArgsConstructor
 public class CatController {
     private final CatService catService;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public ResponseEntity<List<Cat>> listAll() {
-        return ResponseEntity.ok(catService.listAll());
+    public ResponseEntity<Page<Cat>> listAll(Pageable page) {
+        return ResponseEntity.ok(catService.listAll(page));
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cat> findById(@PathVariable Long id) {
         return ResponseEntity.ok(catService.findByIdOrThrowBadRequestException(id));
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(path = "/find")
     public ResponseEntity<List<Cat>> findByName(@RequestParam String name) {
         return ResponseEntity.ok(catService.findByName(name));
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping(path = "/save")
     public ResponseEntity<Cat> save(@RequestBody @Valid CatPostDTO catPostDTO) {
         return new ResponseEntity<>(catService.save(catPostDTO), HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         catService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping
     public ResponseEntity<Void> replace(@RequestBody @Valid CatPutDTO cat){
         catService.replace(cat);

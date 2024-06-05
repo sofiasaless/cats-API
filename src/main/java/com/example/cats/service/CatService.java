@@ -8,6 +8,8 @@ import com.example.cats.model.Cat;
 import com.example.cats.repository.CatRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +20,8 @@ import java.util.Optional;
 public class CatService {
     private final CatRepository catRepository;
 
-    public List<Cat> listAll() {
-        return catRepository.findAll();
+    public Page<Cat> listAll(Pageable page) {
+        return catRepository.findAll(page);
     }
 
     public Cat findById(Long id) {
