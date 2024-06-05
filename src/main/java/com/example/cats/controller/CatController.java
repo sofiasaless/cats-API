@@ -60,4 +60,19 @@ public class CatController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping(path = "/home")
+    public String handleWelcome() {
+        return "home";
+    }
+
+    @GetMapping(path = "/admin/home")
+    public String handleAdminHome() {
+        return "home_admin";
+    }
+
+    @GetMapping(path = "/user/home")
+    public String handleUserHome() {
+        return "home_user";
+    }
+
 }
