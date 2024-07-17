@@ -54,7 +54,7 @@ public class CatController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping
+    @PutMapping(path = "/update")
     public ResponseEntity<Void> replace(@RequestBody @Valid CatPutDTO cat){
         catService.replace(cat);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
